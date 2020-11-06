@@ -76,16 +76,20 @@ export default {
 	},
 	methods: {
 		handleLogin() {
-			this.$refs.ruleForm.validate(async (result) => {
-				if (result) {
-					// 表单校验成功后发送登陆请求
-					let loginStatus = await this.$http.post("login", this.form);
-					console.log(loginStatus);
+			this.$refs.ruleForm.validate(async (valid) => {
+				if (valid) {
+					// 表单校验通过后发送登陆请求
+					let { data } = await this.$http.post("login", this.form);
+					console.log(data);
+					if (data.token) {
+						sessionStorage.setItem("token", data.token); // 登陆成功后将 token 缓存起来
+						this.$router.push("/home");
+					}
 				}
 			});
 		},
+		// 重置按钮清空表单的值和校验提示
 		handleReset() {
-			//
 			this.$refs.ruleForm.resetFields();
 		},
 	},

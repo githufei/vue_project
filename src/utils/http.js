@@ -22,7 +22,7 @@ axios.interceptors.response.use(
 				message: res.data.meta.msg
 			});
 		}
-		return res;
+		return res.data;
 	},
 	(err) => {
 		console.log(err);
