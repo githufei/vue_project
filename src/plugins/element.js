@@ -14,7 +14,11 @@ import {
 	RadioGroup,
 	Radio,
 	Message,
-	Notification
+	Notification,
+	Menu,
+	Submenu,
+	MenuItem,
+	MenuItemGroup
 } from 'element-ui';
 
 Vue.use(Button);
@@ -30,5 +34,9 @@ Vue.use(Switch);
 Vue.use(Checkbox);
 Vue.use(RadioGroup);
 Vue.use(Radio);
+Vue.use(Menu);
+Vue.use(Submenu);
+Vue.use(MenuItem);
+Vue.use(MenuItemGroup);
 Vue.prototype.$message = Message;
 Vue.prototype.$notification = Notification; // 挂在 vue 原型上, 就可以在组件中使用 this.$notification 来弹出提示了

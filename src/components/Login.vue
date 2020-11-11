@@ -41,8 +41,8 @@ export default {
 	data() {
 		return {
 			form: {
-				username: "",
-				password: "",
+				username: "admin",
+				password: "123456",
 			},
 			rules: {
 				username: [
@@ -68,7 +68,7 @@ export default {
 						min: 6,
 						max: 10,
 						message: "长度在 6 到 10 个字符",
-						trggier: "blur",
+						trigger: "blur",
 					},
 				],
 			},
