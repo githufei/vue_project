@@ -23,7 +23,10 @@ import {
 	Main,
 	Aside,
 	Header,
-	Footer
+	Footer,
+	MessageBox,
+	Breadcrumb,
+	breadcrumbItem
 } from 'element-ui';
 console.log(Container);
 Vue.use(Button);
@@ -48,5 +51,9 @@ Vue.use(Main);
 Vue.use(Aside);
 Vue.use(Header);
 Vue.use(Footer);
+Vue.use(Breadcrumb);
+Vue.use(breadcrumbItem);
+
 Vue.prototype.$message = Message;
+Vue.prototype.$confirm = MessageBox.confirm;
 Vue.prototype.$notification = Notification; // 挂在 vue 原型上, 就可以在组件中使用 this.$notification 来弹出提示了

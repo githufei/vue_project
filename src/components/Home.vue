@@ -35,6 +35,7 @@
 							v-for="subItem in item.children"
 							:key="subItem.id"
 							:index="subItem.id + ''"
+							@click="$router.push(`/${subItem.path}`)"
 						>
 							<i class="el-icon-menu"></i>
 							<span slot="title">{{ subItem.authName }}</span>
@@ -43,10 +44,19 @@
 				</el-menu>
 			</el-aside>
 			<el-main>
+				<el-breadcrumb separator="/">
+					<el-breadcrumb-item :to="{ path: '/home' }"
+						>首页</el-breadcrumb-item
+					>
+					<el-breadcrumb-item
+						><a href="/">活动管理</a></el-breadcrumb-item
+					>
+					<el-breadcrumb-item>活动列表</el-breadcrumb-item>
+					<el-breadcrumb-item>活动详情</el-breadcrumb-item>
+				</el-breadcrumb>
 				<router-view></router-view>
 			</el-main>
 		</el-container>
-		<el-footer class="footer">@版权所有</el-footer>
 	</el-container>
 </template>
 
@@ -72,8 +82,14 @@ export default {
 	},
 	methods: {
 		exit() {
-			sessionStorage.removeItem("token");
-			this.$router.push("/login");
+			this.$confirm("确定要退出登录吗?", "提示", {
+				confirmButtonText: "确定",
+				cancelButtonText: "取消",
+				type: "warning",
+			}).then(() => {
+				sessionStorage.removeItem("token");
+				this.$router.push("/login");
+			});
 		},
 		toggleCollapse() {
 			this.isCollapse = !this.isCollapse;
@@ -136,12 +152,5 @@ export default {
 			color: currentColor;
 		}
 	}
-}
-.footer {
-	background-color: #2b4b6b;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: #fff;
 }
 </style>
