@@ -18,9 +18,14 @@ import {
 	Menu,
 	Submenu,
 	MenuItem,
-	MenuItemGroup
+	MenuItemGroup,
+	Container,
+	Main,
+	Aside,
+	Header,
+	Footer
 } from 'element-ui';
-
+console.log(Container);
 Vue.use(Button);
 Vue.use(Form);
 Vue.use(FormItem);
@@ -38,5 +43,10 @@ Vue.use(Menu);
 Vue.use(Submenu);
 Vue.use(MenuItem);
 Vue.use(MenuItemGroup);
+Vue.use(Container);
+Vue.use(Main);
+Vue.use(Aside);
+Vue.use(Header);
+Vue.use(Footer);
 Vue.prototype.$message = Message;
 Vue.prototype.$notification = Notification; // 挂在 vue 原型上, 就可以在组件中使用 this.$notification 来弹出提示了
