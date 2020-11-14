@@ -39,7 +39,7 @@ const router = new VueRouter({
 // next: 是个函数, 必须被调用, 才能跳转页面, 可以传递参数, 跳转到对应的页面
 router.beforeEach((to, from, next) => {
 	let token = sessionStorage.getItem('token');
-	if (!token) {
+	if (!token && to.path !== '/login') {
 		next('/login');
 	} else {
 		next();
