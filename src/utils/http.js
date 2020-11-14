@@ -3,6 +3,18 @@ import axios from 'axios';
 import { Notification } from 'element-ui';
 Vue.config.productionTip = false;
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'; // 配置 axios 请求的基准 url
+
+// 请求拦截器给请求头添加 token
+axios.interceptors.request.use(
+	(req) => {
+		req.headers.Authorization = sessionStorage.getItem('token');
+		return req;
+	},
+	(err) => {
+		console.log(err);
+	}
+);
+
 // 响应拦截器处理错误信息
 axios.interceptors.response.use(
 	(res) => {

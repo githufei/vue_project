@@ -2,6 +2,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Login from '../components/Login.vue';
 import Home from '../components/Home.vue';
+import Welcome from '../components/Welcome.vue';
+import Users from '../components/Users.vue';
 Vue.use(VueRouter);
 
 const routes = [
@@ -12,7 +14,18 @@ const routes = [
 	},
 	{
 		path: '/home',
-		component: Home
+		component: Home,
+		redirect: '/welcome',
+		children: [
+			{
+				path: '/welcome',
+				component: Welcome
+			},
+			{
+				path: '/users',
+				component: Users
+			}
+		]
 	}
 ];
 
@@ -20,12 +33,11 @@ const router = new VueRouter({
 	routes
 });
 
-// 路由导航守卫
+// 路由导航守卫 -- 当用户没登录时, 如果访问需要登录才能看到的页面, 自动跳转到登录页面
+// to: 要进入的页面
+// from: 要离开的页面
+// next: 是个函数, 必须被调用, 才能跳转页面, 可以传递参数, 跳转到对应的页面
 router.beforeEach((to, from, next) => {
-	// to 将要访问的路径
-	// from 来源的路径
-	// next 是个函数，next() 表示放行，next('/login') 表示强制跳转
-	// 如果没有 token，直接跳转到登录页面
 	let token = sessionStorage.getItem('token');
 	if (!token) {
 		next('/login');

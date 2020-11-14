@@ -2,7 +2,7 @@
 	<div class="login-container">
 		<div class="login-box">
 			<div class="avatar-box">
-				<img src="../assets/images/avatar.jpg" alt="" />
+				<img src="../assets/images/logo.png" alt="" />
 			</div>
 			<el-form
 				class="login_form"
@@ -41,8 +41,8 @@ export default {
 	data() {
 		return {
 			form: {
-				username: "",
-				password: "",
+				username: "admin",
+				password: "123456",
 			},
 			rules: {
 				username: [
@@ -68,7 +68,7 @@ export default {
 						min: 6,
 						max: 10,
 						message: "长度在 6 到 10 个字符",
-						trggier: "blur",
+						trigger: "blur",
 					},
 				],
 			},
