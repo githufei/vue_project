@@ -24,8 +24,12 @@ axios.interceptors.response.use(
 		}
 		return res.data;
 	},
-	(err) => {
-		console.log(err);
+	() => {
+		Notification.error({
+			title: '错误',
+			message: '网络请求失败，请检查网络连接'
+		});
+		return { data: null };
 	}
 );
 
